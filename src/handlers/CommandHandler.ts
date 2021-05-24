@@ -9,6 +9,8 @@ import { Bot } from '../core/Bot';
 import { Commands } from '../core/Commands';
 import { Khur } from '../core/Khur';
 import { Request } from '../core/Request';
+import { BaseCommand } from '../structures/BaseCommand';
+import { MiddlewareHandler } from '../handlers/MiddlewareHandler';
 
 /*
 |--------------------------------------------------------------------------
@@ -59,11 +61,51 @@ export class CommandHandler {
       }
 
       if (!isEmpty(commandData)) {
-        if (!Bot.getStatus()) {
+        commandData = <CommandData> commandData;
+
+        try {
+          const beforeMiddlewares: boolean = (
+            await MiddlewareHandler.check({
+              message,
+              commandData,
+              middlewares: customConfig.middlewares || [],
+            })
+          );
+
+          if (!beforeMiddlewares) {
+            return;
+          }
+
+          const commandMiddlewares: boolean = (
+            await MiddlewareHandler.check({
+              message,
+              commandData,
+              middlewares: commandData.config.middlewares || [],
+            })
+          );
+
+          if (!commandMiddlewares) {
+            return;
+          }
+        } catch (error) {
+          console.error(error);
+
           return;
         }
 
-        console.log('Run command ->', commandData);
+        try {
+          const { command, config }: CommandData = commandData;
+          const target: BaseCommand = new (<any> command)({
+            bot,
+            config,
+            message,
+            request,
+          });
+
+          await target.handle();
+        } catch (error) {
+          console.error(error);
+        }
       }
     }
   }

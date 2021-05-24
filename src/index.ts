@@ -11,6 +11,7 @@ export * from './interfaces/core/Request';
 export * from './interfaces/handlers/Command';
 export * from './interfaces/structures/Command';
 export * from './interfaces/structures/Event';
+export * from './interfaces/structures/Middleware';
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ export * from './interfaces/structures/Event';
 
 export * from './structures/BaseCommand';
 export * from './structures/BaseEvent';
+export * from './structures/BaseMiddleware';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,7 +1,11 @@
 
-import { Collection, PermissionResolvable } from 'discord.js';
+import { Collection, Message, PermissionResolvable } from 'discord.js';
+
+import { Bot } from '../../core/Bot';
+import { Request } from '../../core/Request';
 
 import { BaseCommand } from '../../structures/BaseCommand';
+import { BaseMiddleware } from '../../structures/BaseMiddleware';
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +19,24 @@ import { BaseCommand } from '../../structures/BaseCommand';
 export type CommandsCollection = Collection<string, CommandData>;
 
 export interface CommandConfig {
-  allowDynamicAliases: boolean;
+  allowDynamicAliases?: boolean;
   category: string;
-  cooldown: number;
-  locked: boolean;
-  middlewares: Array<string>;
+  cooldown?: number;
+  locked?: boolean;
+  middlewares?: Array<typeof BaseMiddleware>;
   names: Array<string>;
-  nsfw: {
+  nsfw?: {
     current: boolean;
   };
-  onlyDevs: boolean;
-  permissions: PermissionResolvable;
-  strictPerms: boolean;
+  onlyDevs?: boolean;
+  permissions?: PermissionResolvable;
+  strictPerms?: boolean;
+}
+
+export interface CommandConstructorParams {
+  bot: Bot;
+  message: Message;
+  request: Request;
 }
 
 export interface CommandData {
