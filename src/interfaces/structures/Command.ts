@@ -35,6 +35,7 @@ export interface CommandConfig {
 
 export interface CommandConstructorParams {
   bot: Bot;
+  config: CommandConfig;
   message: Message;
   request: Request;
 }

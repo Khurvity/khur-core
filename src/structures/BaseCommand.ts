@@ -2,7 +2,11 @@
 import { GuildMember, Message } from 'discord.js';
 import { isEmpty } from 'lodash';
 
-import { CommandConfig, CommandStructure } from '../interfaces/structures/Command';
+import {
+  CommandConfig,
+  CommandConstructorParams,
+  CommandStructure,
+} from '../interfaces/structures/Command';
 
 import { Bot } from '../core/Bot';
 import { Request } from '../core/Request';
@@ -42,7 +46,7 @@ export class BaseCommand implements CommandStructure {
     config,
     message,
     request,
-  }: any) {
+  }: CommandConstructorParams) {
     this.bot = bot;
     this.config = config;
     this.message = message;
