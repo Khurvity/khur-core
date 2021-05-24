@@ -1,7 +1,12 @@
 
 import { Collection } from 'discord.js';
+import { isEmpty } from 'lodash';
 
-import { CommandsCollection, CommandData } from '../interfaces/structures/Command';
+import {
+  CommandsCollection,
+  CommandData,
+  CommandDynamicInfo,
+} from '../interfaces/structures/Command';
 
 /*
 |--------------------------------------------------------------------------
@@ -68,5 +73,42 @@ export class Commands {
    */
   public static has(key: string): boolean {
     return Commands.list.has(key);
+  }
+
+  /**
+   * Check if this command has a dynamic alias
+   * @param command string
+   * @return CommandDynamicInfo
+   */
+  public static hasDynamicAliases(command: string): CommandDynamicInfo {
+    const commandsWithDynamicAliases: Array<CommandData> = (
+      Commands.raw
+        .filter(({ config: { allowDynamicAliases } }: CommandData): boolean => allowDynamicAliases)
+        .array()
+    );
+
+    if (isEmpty(commandsWithDynamicAliases)) {
+      return {
+        validation: true,
+      };
+    }
+
+    const total: number = commandsWithDynamicAliases.length;
+
+    for (let a = 0; a < total; a++) {
+      const { config: { names } }: CommandData = commandsWithDynamicAliases[a];
+      const valitations: Array<boolean> = names.map((alias: string): boolean => command.startsWith(`${alias}:`));
+
+      if (valitations.includes(true)) {
+        return {
+          commandData: commandsWithDynamicAliases[a],
+          validation: true,
+        };
+      }
+    }
+
+    return {
+      validation: false,
+    };
   }
 }

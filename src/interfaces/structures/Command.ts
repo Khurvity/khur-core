@@ -15,6 +15,7 @@ import { BaseCommand } from '../../structures/BaseCommand';
 export type CommandsCollection = Collection<string, CommandData>;
 
 export interface CommandConfig {
+  allowDynamicAliases: boolean;
   category: string;
   cooldown: number;
   locked: boolean;
@@ -33,6 +34,11 @@ export interface CommandData {
   config: CommandConfig;
   name: string;
   path: string;
+}
+
+export interface CommandDynamicInfo {
+  commandData?: CommandData;
+  validation: boolean;
 }
 
 export interface CommandStructure {
