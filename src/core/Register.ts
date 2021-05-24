@@ -68,7 +68,7 @@ export class Register {
     }
 
     const config: CommandConfig = {
-      ...defaultConfig,
+      ...defaultConfig.command,
       ...newConfig,
     };
 
