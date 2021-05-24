@@ -12,6 +12,7 @@ export interface RequestData {
   prefix: string;
   command: string;
   content: string;
+  chunks: Array<string>;
   mentions: RequestMentions;
   params: RequestParams;
   raw: {

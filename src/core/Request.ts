@@ -84,6 +84,11 @@ export class Request {
       prefix: this.prefix,
       command,
       content: newContent,
+      chunks: (
+        chunks
+          .map((chunk: string): string => chunk.trim())
+          .filter((chunk: string): boolean => !isEmpty(chunk))
+      ),
       mentions: extractMentions(rawContent),
       params: extractParams(rawContent),
       raw: {
