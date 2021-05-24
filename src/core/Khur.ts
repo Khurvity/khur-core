@@ -23,6 +23,11 @@ export class Khur extends Kernel {
   private static appRoot: string;
 
   /**
+   * Default prefix
+   */
+  private static defaultPrefix: string;
+
+  /**
    * Initialize all application configuration
    * @param config KhurConfig
    * @return Promise<void>
@@ -30,10 +35,12 @@ export class Khur extends Kernel {
   public static async config({
     appRoot,
     bot,
+    defaultPrefix,
     discordClient,
     onReady,
   }: KhurConfig): Promise<void> {
     Khur.appRoot = appRoot;
+    Khur.defaultPrefix = defaultPrefix;
 
     if (isEmpty(bot)) {
       throw new Error('Bot credentials are missing');
@@ -70,6 +77,18 @@ export class Khur extends Kernel {
     return Khur.appRoot;
   }
 
+  /**
+   * Getting default prefix
+   * @return string
+   */
+  public static getDefaultPrefix(): string {
+    return Khur.defaultPrefix;
+  }
+
+  /**
+   * Validate bot credentials
+   * @param bot BotCredentials
+   */
   private static checkValidations(bot: BotCredentials): void {
     if (isEmpty(bot.client) || isEmpty(bot.client?.id) || isEmpty(bot.client?.secret)) {
       throw new Error('Client credentials are missing');

@@ -25,6 +25,7 @@ export interface BotCredentials {
 export interface KhurConfig {
   appRoot: string;
   bot: BotCredentials;
+  defaultPrefix: string;
   discordClient: Client;
   onReady?(client: Client): Promise<void>;
 }
