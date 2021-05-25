@@ -83,7 +83,7 @@ export class Commands {
   public static hasDynamicAliases(command: string): CommandDynamicInfo {
     const commandsWithDynamicAliases: Array<CommandData> = (
       Commands.raw
-        .filter(({ config: { allowDynamicAliases } }: CommandData): boolean => allowDynamicAliases)
+        .filter(({ config: { allowDynamicAliases } }: CommandData): boolean => !!allowDynamicAliases)
         .array()
     );
 
