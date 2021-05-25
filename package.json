@@ -15,6 +15,14 @@
     "nodejs",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khurvity/khur-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Khurvity/khur-core/issues"
+  },
+  "homepage": "https://github.com/Khurvity/khur-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -31,11 +39,6 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
   },
   "prettier": {
     "printWidth": 100,
