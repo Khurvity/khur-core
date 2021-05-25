@@ -11,6 +11,7 @@ import { BaseMiddleware } from '../../structures/BaseMiddleware';
 */
 
 export interface CommandHandlerConfig {
+  currentTranslation?: string;
   middlewares?: Array<typeof BaseMiddleware>;
   prefix: string;
 }

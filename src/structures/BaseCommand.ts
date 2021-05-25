@@ -10,6 +10,7 @@ import {
 
 import { Bot } from '../core/Bot';
 import { Request } from '../core/Request';
+import { Translation } from '../core/Translation';
 
 /*
 |--------------------------------------------------------------------------
@@ -41,16 +42,20 @@ export class BaseCommand implements CommandStructure {
    */
   protected request: Request;
 
+  protected translation: Translation;
+
   constructor({
     bot,
     config,
     message,
     request,
+    translation,
   }: CommandConstructorParams) {
     this.bot = bot;
     this.config = config;
     this.message = message;
     this.request = request;
+    this.translation = translation;
   }
 
   /**

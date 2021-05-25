@@ -9,6 +9,7 @@ import { Bot } from '../core/Bot';
 import { Commands } from '../core/Commands';
 import { Khur } from '../core/Khur';
 import { Request } from '../core/Request';
+import { Translation } from '../core/Translation';
 import { BaseCommand } from '../structures/BaseCommand';
 import { MiddlewareHandler } from '../handlers/MiddlewareHandler';
 
@@ -30,6 +31,7 @@ export class CommandHandler {
    */
   public static async init(message: Message, config?: CommandHandlerConfig): Promise<void> {
     const customConfig: CommandHandlerConfig = {
+      currentTranslation: Translation.getSupported()[0],
       prefix: Khur.getDefaultPrefix(),
       ...config,
     };
@@ -94,12 +96,14 @@ export class CommandHandler {
         }
 
         try {
-          const { command, config }: CommandData = commandData;
+          const { command, config, path }: CommandData = commandData;
+          const translation: Translation = new Translation(customConfig.currentTranslation || '', path);
           const target: BaseCommand = new (<any> command)({
             bot,
             config,
             message,
             request,
+            translation,
           });
 
           await target.handle();

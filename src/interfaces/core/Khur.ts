@@ -27,5 +27,9 @@ export interface KhurConfig {
   bot: BotCredentials;
   defaultPrefix: string;
   discordClient: Client;
+  i18n: {
+    globalTranslationsPath: string;
+    supported: Array<string>;
+  };
   onReady?(client: Client): Promise<void>;
 }

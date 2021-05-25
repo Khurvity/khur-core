@@ -6,6 +6,7 @@ import { BotCredentials, KhurConfig } from '../interfaces/core/Khur';
 
 import { Bot } from './Bot';
 import { Kernel } from './Kernel';
+import { Translation } from './Translation';
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ export class Khur extends Kernel {
     bot,
     defaultPrefix,
     discordClient,
+    i18n,
     onReady,
   }: KhurConfig): Promise<void> {
     Khur.appRoot = appRoot;
@@ -46,7 +48,10 @@ export class Khur extends Kernel {
       throw new Error('Bot credentials are missing');
     }
 
-    Khur.checkValidations(bot);
+    Khur.checkValidations(bot, i18n);
+
+    Translation.setSupported(i18n?.supported);
+    Translation.setGlobalPath(i18n?.globalTranslationsPath);
 
     try {
       Bot.setClient(discordClient);
@@ -89,7 +94,7 @@ export class Khur extends Kernel {
    * Validate bot credentials
    * @param bot BotCredentials
    */
-  private static checkValidations(bot: BotCredentials): void {
+  private static checkValidations(bot: BotCredentials, i18n: any): void {
     if (isEmpty(bot.client) || isEmpty(bot.client?.id) || isEmpty(bot.client?.secret)) {
       throw new Error('Client credentials are missing');
     }
@@ -104,6 +109,10 @@ export class Khur extends Kernel {
 
     if (isEmpty(bot.permissions) || !isString(bot.permissions)) {
       throw new Error('Property {permissions} is required');
+    }
+
+    if (isEmpty(i18n) || !isArrayLike(i18n?.supported)) {
+      throw new Error('Property {i18n} is required');
     }
   }
 }

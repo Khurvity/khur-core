@@ -3,6 +3,7 @@ import { Collection, Message, PermissionResolvable } from 'discord.js';
 
 import { Bot } from '../../core/Bot';
 import { Request } from '../../core/Request';
+import { Translation } from '../../core/Translation';
 
 import { BaseCommand } from '../../structures/BaseCommand';
 import { BaseMiddleware } from '../../structures/BaseMiddleware';
@@ -38,6 +39,7 @@ export interface CommandConstructorParams {
   config: CommandConfig;
   message: Message;
   request: Request;
+  translation: Translation;
 }
 
 export interface CommandData {
