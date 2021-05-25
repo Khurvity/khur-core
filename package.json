@@ -30,9 +30,7 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "prepare": "tsdx build"
   },
   "husky": {
     "hooks": {
@@ -45,16 +43,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "size-limit": [
-    {
-      "path": "dist/lib.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/lib.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "peerDependencies": {},
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.10.2",
@@ -68,6 +56,7 @@
   "dependencies": {
     "discord.js": "^12.5.3",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "node-notifier": "^8.0.1"
   }
 }
