@@ -29,6 +29,11 @@ export class Khur extends Kernel {
   private static defaultPrefix: string;
 
   /**
+   * Execute callback before initialize bot events
+   */
+  private static initCallback: () => Promise<void> = async (): Promise<void> => {};
+
+  /**
    * Initialize all application configuration
    * @param config KhurConfig
    * @return Promise<void>
@@ -58,6 +63,7 @@ export class Khur extends Kernel {
 
       const client: Client = Bot.getClient();
 
+      await Khur.initCallback();
       await Khur.initializeEvents();
 
       client.login(bot.token)
@@ -91,6 +97,15 @@ export class Khur extends Kernel {
   }
 
   /**
+   * Set initialize function
+   * @param initCallback () => Promise<void>
+   * @return Promise<void>
+   */
+  public static async beforeInit(initCallback: () => Promise<void>): Promise<void> {
+    Khur.initCallback = initCallback;
+  }
+
+  /**
    * Validate bot credentials
    * @param bot BotCredentials
    */
@@ -113,6 +128,10 @@ export class Khur extends Kernel {
 
     if (isEmpty(i18n) || !isArrayLike(i18n?.supported)) {
       throw new Error('Property {i18n} is required');
+    }
+
+    if (!isFunction(Khur.initCallback)) {
+      throw new Error('Callback {initCallback} is not a function');
     }
   }
 }
