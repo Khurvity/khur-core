@@ -1,4 +1,3 @@
-
 import { Collection, Message, PermissionResolvable } from 'discord.js';
 
 import { Bot } from '../../core/Bot';

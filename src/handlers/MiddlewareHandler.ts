@@ -1,4 +1,3 @@
-
 import { isBoolean, isEmpty } from 'lodash';
 
 import { MiddlewareHandlerParams } from '../interfaces/handlers/Middleware';
@@ -31,7 +30,9 @@ export class MiddlewareHandler {
 
     for (const middleware of middlewares) {
       if (!(middleware?.prototype instanceof BaseMiddleware)) {
-        throw new Error(`Middleware {${middleware?.name}} expected to be extended from BaseMiddleware class`);
+        throw new Error(
+          `Middleware {${middleware?.name}} expected to be extended from BaseMiddleware class`
+        );
       }
 
       const currentMiddleware: BaseMiddleware = new middleware();

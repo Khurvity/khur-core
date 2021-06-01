@@ -1,4 +1,3 @@
-
 import { isEmpty, isFunction, isString } from 'lodash';
 
 import { RegisterDefaultConfig, RegisterGroupParams } from '../interfaces/core/Register';
@@ -41,7 +40,10 @@ export class Register {
    * @param params RegisterGroupParams
    * @param callback (params: RegisterGroupParams) => void
    */
-  public static group(params: RegisterGroupParams, callback: (params: RegisterGroupParams) => void): void {
+  public static group(
+    params: RegisterGroupParams,
+    callback: (params: RegisterGroupParams) => void
+  ): void {
     if (!isFunction(callback)) {
       throw new Error('Param {callback} expected to be a function');
     }

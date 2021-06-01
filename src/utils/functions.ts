@@ -1,4 +1,3 @@
-
 import { isFunction } from 'lodash';
 
 /*
@@ -17,7 +16,7 @@ import { isFunction } from 'lodash';
  */
 export function iterate(
   iterable: IterableIterator<RegExpMatchArray>,
-  callback: (item: RegExpMatchArray) => void,
+  callback: (item: RegExpMatchArray) => void
 ): void {
   if (!isFunction(callback)) {
     return;

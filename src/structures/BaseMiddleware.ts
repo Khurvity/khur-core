@@ -1,4 +1,3 @@
-
 import { MiddlewareParams, MiddlewareStructure } from '../interfaces/structures/Middleware';
 
 /*

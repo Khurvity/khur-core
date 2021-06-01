@@ -1,4 +1,3 @@
-
 import lodash, {
   isArrayLike,
   isEmpty,
@@ -84,17 +83,15 @@ export class Translation {
       throw new Error('Param {supported} expected to be an Array<string>');
     }
 
-    const validation: boolean = (
-      supported
-        .filter((locale: string): boolean => (
-          isString(locale)
-            ? Translation.checkLocaleFormat(locale)
-            : false
-        )).length === supported.length
-    );
+    const validation: boolean =
+      supported.filter((locale: string): boolean =>
+        isString(locale) ? Translation.checkLocaleFormat(locale) : false
+      ).length === supported.length;
 
     if (!validation) {
-      throw new Error('Values for {supported} expected to be a string with format: en, en-US, es, es-MX, etc');
+      throw new Error(
+        'Values for {supported} expected to be a string with format: en, en-US, es, es-MX, etc'
+      );
     }
 
     Translation.supported = supported;
@@ -134,7 +131,7 @@ export class Translation {
    * @return boolean
    */
   public static checkLocaleFormat(locale: string): boolean {
-    return /^[a-z]{2,}(\-[a-z]{2,})?$/gi.test(locale);
+    return /^[a-z]{2,}(-[a-z]{2,})?$/gi.test(locale);
   }
 
   /**
@@ -173,7 +170,7 @@ export class Translation {
     basePath: string,
     type: 'global' | 'local',
     key: string,
-    replace: TranslationReplaceParams,
+    replace: TranslationReplaceParams
   ): any {
     const use: string = trim(key);
 
@@ -196,7 +193,9 @@ export class Translation {
     let currentGlobal: any = null;
 
     try {
-      defaultGlobal = require([basePath, <string> Translation.defaultTranslation, chunks[0]].join('/'));
+      defaultGlobal = require([basePath, Translation.defaultTranslation as string, chunks[0]].join(
+        '/'
+      ));
     } catch (err) {
       /**
        * Error::defaultGlobal
@@ -219,10 +218,10 @@ export class Translation {
 
     if (isString(value)) {
       Object.keys(replace).forEach((replaceWith: string): void => {
-        value = (<string> value).split(`{{${replaceWith}}}`).join(<string> replace[replaceWith]);
+        value = (value as string).split(`{{${replaceWith}}}`).join(replace[replaceWith] as string);
       });
     } else if (isFunction(value)) {
-      return <string> value(replace);
+      return value(replace) as string;
     } else if (isArrayLike(value) || isObjectLike(value)) {
       return value;
     } else if (!isNull(value)) {
@@ -239,11 +238,13 @@ export class Translation {
    */
   private static checkValidations(current: null | string = null, commandPath?: string): void {
     if (!isNull(current)) {
-      if (!Translation.checkLocaleFormat(<string> current)) {
-        throw new Error('Value for {current} expected to be a string with format: en, en-US, es, es-MX, etc');
+      if (!Translation.checkLocaleFormat(current as string)) {
+        throw new Error(
+          'Value for {current} expected to be a string with format: en, en-US, es, es-MX, etc'
+        );
       }
 
-      if (!Translation.supported.includes(<string> current)) {
+      if (!Translation.supported.includes(current as string)) {
         throw new Error('Value for {current} is not supported with current i18n list');
       }
     }

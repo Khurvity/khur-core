@@ -1,4 +1,3 @@
-
 import { EventData } from '../interfaces/structures/Event';
 
 import { Events } from './Events';
@@ -22,7 +21,7 @@ export class Kernel {
 
     events.forEach((item: EventData): void => {
       try {
-        new (<any> item.event)(item.name);
+        new (item.event as any)(item.name);
       } catch (error) {
         console.error(`Event {${item.name}} cannot be initialized | Error:`, error);
       }

@@ -1,4 +1,3 @@
-
 import { Collection } from 'discord.js';
 import { isEmpty } from 'lodash';
 
@@ -81,11 +80,9 @@ export class Commands {
    * @return CommandDynamicInfo
    */
   public static hasDynamicAliases(command: string): CommandDynamicInfo {
-    const commandsWithDynamicAliases: Array<CommandData> = (
-      Commands.raw
-        .filter(({ config: { allowDynamicAliases } }: CommandData): boolean => !!allowDynamicAliases)
-        .array()
-    );
+    const commandsWithDynamicAliases: Array<CommandData> = Commands.raw
+      .filter(({ config: { allowDynamicAliases } }: CommandData): boolean => !!allowDynamicAliases)
+      .array();
 
     if (isEmpty(commandsWithDynamicAliases)) {
       return {
@@ -96,8 +93,12 @@ export class Commands {
     const total: number = commandsWithDynamicAliases.length;
 
     for (let a = 0; a < total; a++) {
-      const { config: { names } }: CommandData = commandsWithDynamicAliases[a];
-      const valitations: Array<boolean> = names.map((alias: string): boolean => command.startsWith(`${alias}:`));
+      const {
+        config: { names },
+      }: CommandData = commandsWithDynamicAliases[a];
+      const valitations: Array<boolean> = names.map((alias: string): boolean =>
+        command.startsWith(`${alias}:`)
+      );
 
       if (valitations.includes(true)) {
         return {

@@ -1,4 +1,3 @@
-
 import { Message } from 'discord.js';
 
 import { CommandData } from '../../interfaces/structures/Command';
@@ -15,7 +14,7 @@ import { BaseMiddleware } from '../../structures/BaseMiddleware';
 */
 
 export interface MiddlewareHandlerParams {
-  message: Message,
-  commandData: CommandData,
-  middlewares: Array<typeof BaseMiddleware>,
+  message: Message;
+  commandData: CommandData;
+  middlewares: Array<typeof BaseMiddleware>;
 }

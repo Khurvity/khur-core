@@ -1,4 +1,3 @@
-
 import { Collection } from 'discord.js';
 
 import { BaseEvent } from '../../structures/BaseEvent';

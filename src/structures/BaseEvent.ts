@@ -1,4 +1,3 @@
-
 import { Client } from 'discord.js';
 
 import { EventStructure } from '../interfaces/structures/Event';

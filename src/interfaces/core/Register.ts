@@ -1,4 +1,3 @@
-
 import { CommandConfig } from '../structures/Command';
 
 /*

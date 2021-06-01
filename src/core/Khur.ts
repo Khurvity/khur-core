@@ -1,4 +1,3 @@
-
 import { Client } from 'discord.js';
 import { isArrayLike, isEmpty, isFunction, isString } from 'lodash';
 
@@ -66,7 +65,8 @@ export class Khur extends Kernel {
       await Khur.initCallback();
       await Khur.initializeEvents();
 
-      client.login(bot.token)
+      client
+        .login(bot.token)
         .then((): void => {
           if (isFunction(onReady)) {
             onReady(client).catch((): void => {});

@@ -1,4 +1,3 @@
-
 import { Message } from 'discord.js';
 import { isEmpty, isNull, isString } from 'lodash';
 
@@ -46,25 +45,18 @@ export class Request {
    * @return RequestData
    */
   public data(message?: string): RequestData {
-    const currentContent: string = (
-      isEmpty(message)
-        ? this.message.content
-        : (
-          isString(message)
-            ? message
-            : ''
-        )
-    );
-    let content: string = (
-      currentContent.replace(/>/g, '> ')
-        .trim()
-        .replace(/(\-\-[a-z:-]+)/g, '$1 ')
-    );
-    let chunks: Array<string> = (
-      content
-        .split(' ')
-        .filter((chunk: string): boolean => !isEmpty(chunk))
-    );
+    const currentContent: string = isEmpty(message)
+      ? this.message.content
+      : isString(message)
+      ? message
+      : '';
+    let content: string = currentContent
+      .replace(/>/g, '> ')
+      .trim()
+      .replace(/(--[a-z:-]+)/g, '$1 ');
+    let chunks: Array<string> = content
+      .split(' ')
+      .filter((chunk: string): boolean => !isEmpty(chunk));
     let command: string = '';
     let newContent: string = '';
 
@@ -84,11 +76,9 @@ export class Request {
       prefix: this.prefix,
       command,
       content: newContent,
-      chunks: (
-        chunks
-          .map((chunk: string): string => chunk.trim())
-          .filter((chunk: string): boolean => !isEmpty(chunk))
-      ),
+      chunks: chunks
+        .map((chunk: string): string => chunk.trim())
+        .filter((chunk: string): boolean => !isEmpty(chunk)),
       mentions: extractMentions(rawContent),
       params: extractParams(rawContent),
       raw: {

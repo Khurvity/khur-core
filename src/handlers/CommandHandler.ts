@@ -1,4 +1,3 @@
-
 import { Message } from 'discord.js';
 import { isEmpty, isString } from 'lodash';
 
@@ -63,28 +62,24 @@ export class CommandHandler {
       }
 
       if (!isEmpty(commandData)) {
-        commandData = <CommandData> commandData;
+        commandData = commandData as CommandData;
 
         try {
-          const beforeMiddlewares: boolean = (
-            await MiddlewareHandler.check({
-              message,
-              commandData,
-              middlewares: customConfig.middlewares || [],
-            })
-          );
+          const beforeMiddlewares: boolean = await MiddlewareHandler.check({
+            message,
+            commandData,
+            middlewares: customConfig.middlewares || [],
+          });
 
           if (!beforeMiddlewares) {
             return;
           }
 
-          const commandMiddlewares: boolean = (
-            await MiddlewareHandler.check({
-              message,
-              commandData,
-              middlewares: commandData.config.middlewares || [],
-            })
-          );
+          const commandMiddlewares: boolean = await MiddlewareHandler.check({
+            message,
+            commandData,
+            middlewares: commandData.config.middlewares || [],
+          });
 
           if (!commandMiddlewares) {
             return;
@@ -97,8 +92,11 @@ export class CommandHandler {
 
         try {
           const { command, config, path }: CommandData = commandData;
-          const translation: Translation = new Translation(customConfig.currentTranslation || '', path);
-          const target: BaseCommand = new (<any> command)({
+          const translation: Translation = new Translation(
+            customConfig.currentTranslation || '',
+            path
+          );
+          const target: BaseCommand = new (command as any)({
             bot,
             config,
             message,

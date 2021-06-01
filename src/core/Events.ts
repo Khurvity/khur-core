@@ -1,4 +1,3 @@
-
 import { Collection } from 'discord.js';
 
 import { EventsCollection, EventData } from '../interfaces/structures/Event';

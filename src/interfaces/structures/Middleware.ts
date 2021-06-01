@@ -1,4 +1,3 @@
-
 import { Message } from 'discord.js';
 
 import { CommandData } from '../../interfaces/structures/Command';

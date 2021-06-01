@@ -1,12 +1,7 @@
-
 import { Client, Guild, Message, User } from 'discord.js';
 import { isEmpty } from 'lodash';
 
-import {
-  RequestMentions,
-  RequestParams,
-  RequestValidations,
-} from '../interfaces/core/Request';
+import { RequestMentions, RequestParams, RequestValidations } from '../interfaces/core/Request';
 import { IterableRegExpMatchArray } from '../interfaces/utils/Iterables';
 
 import { Bot } from '../core/Bot';
@@ -91,8 +86,8 @@ export function extractMentions(content: string): RequestMentions {
  */
 export function extractParams(content: string): RequestParams {
   const data: RequestParams = {};
-  const filters: IterableRegExpMatchArray = (
-    content.matchAll(/--([a-z:-]+)([\s\S]*?)(?=--[a-z:-]+|$)/g)
+  const filters: IterableRegExpMatchArray = content.matchAll(
+    /--([a-z:-]+)([\s\S]*?)(?=--[a-z:-]+|$)/g
   );
 
   iterate(filters, (item: RegExpMatchArray): void => {
@@ -106,7 +101,7 @@ export function extractParams(content: string): RequestParams {
         data[key] = {
           content: newValue,
           chunks: !isEmpty(newValue) ? [newValue] : [],
-          mentions: <any> {},
+          mentions: {} as any,
         };
       } else {
         const condition: boolean = !isEmpty(newValue);
@@ -148,7 +143,8 @@ export function getAuthorAvatar(request: Message | User): string {
   }
 
   if (!isEmpty(author)) {
-    avatar = author?.displayAvatarURL({ dynamic: true, size: 512 }) || author?.defaultAvatarURL || '';
+    avatar =
+      author?.displayAvatarURL({ dynamic: true, size: 512 }) || author?.defaultAvatarURL || '';
   }
 
   return avatar;

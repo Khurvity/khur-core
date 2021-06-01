@@ -1,4 +1,3 @@
-
 import { BaseMiddleware } from '../../structures/BaseMiddleware';
 
 /*

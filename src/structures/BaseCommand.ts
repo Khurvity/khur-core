@@ -1,4 +1,3 @@
-
 import { GuildMember, Message } from 'discord.js';
 import { isEmpty } from 'lodash';
 
@@ -44,13 +43,7 @@ export class BaseCommand implements CommandStructure {
 
   protected translation: Translation;
 
-  constructor({
-    bot,
-    config,
-    message,
-    request,
-    translation,
-  }: CommandConstructorParams) {
+  constructor({ bot, config, message, request, translation }: CommandConstructorParams) {
     this.bot = bot;
     this.config = config;
     this.message = message;
@@ -86,10 +79,8 @@ export class BaseCommand implements CommandStructure {
       let botMember: GuildMember | null | undefined = message?.guild?.me;
 
       if (!isEmpty(botMember)) {
-        botMember = <GuildMember> botMember;
-        const canIDeleteMessages: boolean = (
-          botMember.hasPermission('MANAGE_MESSAGES')
-        );
+        botMember = botMember as GuildMember;
+        const canIDeleteMessages: boolean = botMember.hasPermission('MANAGE_MESSAGES');
 
         if (canIDeleteMessages) {
           message?.delete().catch((): void => {});
