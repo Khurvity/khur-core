@@ -48,18 +48,18 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.2",
+    "@size-limit/preset-small-lib": "^4.11.0",
     "@types/lodash": "^4.14.170",
     "husky": "^6.0.0",
-    "size-limit": "^4.10.2",
+    "size-limit": "^4.11.0",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.2"
   },
   "dependencies": {
     "discord.js": "^12.5.3",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "node-notifier": "^8.0.1"
+    "node-notifier": "^10.0.0"
   }
 }
