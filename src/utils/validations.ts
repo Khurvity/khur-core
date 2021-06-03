@@ -22,5 +22,5 @@ export function trim(text: string): string {
  * @return string
  */
 export function trimLines(text: string): string {
-  return text.replace(/^[^\S\r\n]+|[^\S\r\n]+$/gm, '');
+  return text.replace(/^[\r?\n]+|[\r?\n]+$/g, '').trim();
 }
