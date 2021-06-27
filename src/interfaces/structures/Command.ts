@@ -1,4 +1,8 @@
-import { Collection, Message, PermissionResolvable } from 'discord.js';
+import {
+  Collection,
+  Message,
+  // PermissionResolvable,
+} from 'discord.js';
 
 import { Bot } from '../../core/Bot';
 import { Request } from '../../core/Request';
@@ -20,17 +24,9 @@ export type CommandsCollection = Collection<string, CommandData>;
 
 export interface CommandConfig {
   allowDynamicAliases?: boolean;
-  category: string;
-  cooldown?: number;
-  locked?: boolean;
   middlewares?: Array<typeof BaseMiddleware>;
   names: Array<string>;
-  nsfw?: {
-    current: boolean;
-  };
-  onlyDevs?: boolean;
-  permissions?: PermissionResolvable;
-  strictPerms?: boolean;
+  [key: string]: any;
 }
 
 export interface CommandConstructorParams {

@@ -20,17 +20,8 @@ import { Events } from './Events';
 const defaultConfig: RegisterDefaultConfig = {
   command: {
     allowDynamicAliases: false,
-    category: '',
-    cooldown: 3,
-    locked: false,
     middlewares: [],
     names: [],
-    nsfw: {
-      current: false,
-    },
-    onlyDevs: false,
-    permissions: [],
-    strictPerms: false,
   },
 };
 

@@ -15,4 +15,5 @@ export interface RegisterDefaultConfig {
 
 export interface RegisterGroupParams {
   prefix?: string;
+  [key: string]: any;
 }
