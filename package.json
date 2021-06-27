@@ -1,6 +1,6 @@
 {
   "name": "@khurvity/khur-core",
-  "description": "Core library for Khur",
+  "description": "Core library for Discord Bots development with Discord.js library",
   "version": "0.1.0",
   "author": [
     {
