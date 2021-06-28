@@ -52,10 +52,6 @@ export class Register {
       throw new Error('Property {path} is not a valid string format');
     }
 
-    if (isEmpty(newConfig.category)) {
-      throw new Error('Property {config.category} is required');
-    }
-
     if (isEmpty(newConfig.names)) {
       throw new Error('Property {config.names} is required');
     }
