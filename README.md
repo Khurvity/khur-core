@@ -1,6 +1,6 @@
 # Khur Core
 
-Set of base tools to work with the [discord.js](https://github.com/discordjs/discord.js) library using the [Khur](https://github.com/Khurvity/khur) template as a base to code a Discord bot.
+Set of base tools to work with the [discord.js](https://github.com/discordjs/discord.js) library.
 
 This library contains some features to facilitate the event log and commands, besides using middlewares for the command handler (including the individual commands) to provide a better extension of functionality.
 
