@@ -1,6 +1,6 @@
 {
   "name": "@khurvity/khur-core",
-  "description": "Core library for Khur",
+  "description": "Core library for Discord Bots development with Discord.js library",
   "version": "0.1.0",
   "author": [
     {
@@ -15,6 +15,14 @@
     "nodejs",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khurvity/khur-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Khurvity/khur-core/issues"
+  },
+  "homepage": "https://github.com/Khurvity/khur-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -29,15 +37,9 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
+    "test:w": "tsdx test --watch",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
+    "prepare": "tsdx build"
   },
   "prettier": {
     "printWidth": 100,
@@ -45,26 +47,22 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "size-limit": [
-    {
-      "path": "dist/lib.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/lib.esm.js",
-      "limit": "10 KB"
-    }
-  ],
+  "jest": {
+    "testEnvironment": "node"
+  },
   "peerDependencies": {},
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.2",
+    "@types/lodash": "^4.14.170",
     "husky": "^6.0.0",
-    "size-limit": "^4.10.2",
+    "normalize-url": "^6.1.0",
     "tsdx": "^0.14.1",
-    "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.4"
   },
   "dependencies": {
-    "node-notifier": "^8.0.1"
+    "discord.js": "^12.5.3",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "node-notifier": "^10.0.0"
   }
 }
