@@ -52,7 +52,8 @@ describe('Extract Mentions', () => {
   });
 
   it('Extract emotes', () => {
-    const content: string = 'Sample text <:emote1:123456789123456789> more text <:emote2:123456789123456789>';
+    const content: string =
+      'Sample text <:emote1:123456789123456789> more text <:emote2:123456789123456789>';
     const result: RequestMentions = extractMentions(content);
 
     expect(result.emotes.length).toEqual(2);
@@ -101,7 +102,7 @@ describe('Extract Params', () => {
     expect(result.lastname?.content).toEqual(undefined);
   });
 
-  it("Extract mentions in params: Channels", () => {
+  it('Extract mentions in params: Channels', () => {
     const content: Array<string> = [
       '--list John <#123456789123456789>--key',
       '--list John <#123456789123456789> --key <#!123456789123456789> <#> <#123456789>',
@@ -118,7 +119,7 @@ describe('Extract Params', () => {
     expect(result).toEqual([1, 0, undefined, 1, 1]);
   });
 
-  it("Extract mentions in params: Emotes", () => {
+  it('Extract mentions in params: Emotes', () => {
     const content: Array<string> = [
       '--list John <:sample:123456789123456789>--key',
       '--list John <A:sample2:123456789123456789> --key <::123456789123456789> text <a:none:123456789>',
@@ -135,7 +136,7 @@ describe('Extract Params', () => {
     expect(result).toEqual([1, undefined, 0, 0, 1]);
   });
 
-  it("Extract mentions in params: Roles", () => {
+  it('Extract mentions in params: Roles', () => {
     const content: Array<string> = [
       '--list John <@&123456789>--key',
       '--list John <@&> --key <@&123456789123456789> text <@&123456789>',
@@ -151,7 +152,7 @@ describe('Extract Params', () => {
     expect(result).toEqual([1, 0, 0, 2]);
   });
 
-  it("Extract mentions in params: Users", () => {
+  it('Extract mentions in params: Users', () => {
     const content: Array<string> = [
       '--list John <@123456789123456789>--key',
       '--list John <@123456789123456789> --key <@!123456789123456789> <@> <@!123456789>',
