@@ -1,3 +1,5 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Khurvity/khur-core?label=Release) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Khurvity/khur-core/Deployment?label=Deployment) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Khurvity/khur-core/Testing?label=Tests) ![GitHub](https://img.shields.io/github/license/Khurvity/khur-core?label=License)
+
 # Khur Core
 
 Set of base tools to work with the [discord.js](https://github.com/discordjs/discord.js) library.
