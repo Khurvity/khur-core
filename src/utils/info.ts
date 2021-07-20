@@ -136,10 +136,10 @@ export function getAuthorAvatar(request: Message | User): string {
   let author: User | undefined;
   let avatar: string = '';
 
-  if (request instanceof Message) {
-    author = request.author;
-  } else if (request instanceof User) {
-    author = request;
+  if (!isEmpty((request as Message)?.author)) {
+    author = (request as Message).author;
+  } else {
+    author = request as User;
   }
 
   if (!isEmpty(author)) {
@@ -173,10 +173,10 @@ export function getBotAvatar(): string {
 export function getGuildBanner(request: Guild | Message): string {
   let guild: Guild | null = null;
 
-  if (request instanceof Message) {
-    guild = request.guild;
-  } else if (request instanceof Guild) {
-    guild = request;
+  if (!isEmpty((request as Message)?.guild)) {
+    guild = (request as Message).guild;
+  } else {
+    guild = request as Guild;
   }
 
   return guild?.bannerURL({ size: 2048 }) || '';
@@ -190,10 +190,10 @@ export function getGuildBanner(request: Guild | Message): string {
 export function getGuildIcon(request: Guild | Message): string {
   let guild: Guild | null = null;
 
-  if (request instanceof Message) {
-    guild = request.guild;
-  } else if (request instanceof Guild) {
-    guild = request;
+  if (!isEmpty((request as Message)?.guild)) {
+    guild = (request as Message).guild;
+  } else {
+    guild = request as Guild;
   }
 
   return guild?.iconURL({ dynamic: true, size: 512 }) || '';

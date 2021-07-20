@@ -17,8 +17,10 @@ export class BaseEvent implements EventStructure {
   constructor(name: string) {
     const client: Client = Bot.getClient();
 
-    if (client instanceof Client) {
+    try {
       client.on(name, this.handle);
+    } catch (error) {
+      console.error(error);
     }
   }
 
