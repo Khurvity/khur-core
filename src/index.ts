@@ -59,4 +59,4 @@ export * from './utils/info';
 |--------------------------------------------------------------------------
 */
 
-export * from 'discord.js';
+// export * from 'discord.js';

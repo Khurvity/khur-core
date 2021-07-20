@@ -6,7 +6,7 @@ Set of base tools to work with the [discord.js](https://github.com/discordjs/dis
 
 This library contains some features to facilitate the event log and commands, besides using middlewares for the command handler (including the individual commands) to provide a better extension of functionality.
 
-The core of this package already includes the library [discord.js](https://github.com/discordjs/discord.js) and will be kept updated to its latest version so it won’t be necessary to install it again. Each of its kind can be exported from `@khurvity/khur-core`.
+**Note**: As of **`version >= 0.2.0`** it will not include the Discord.js package so it must be installed in your project separately.
 
 ## Features
 
@@ -442,8 +442,9 @@ Register.command('@app-command/Sample', {
   },
 });
 ```
+**Note:** Dynamic aliases are detected with after the ":" or "-" character, for example: `name:dynamicalias`, `name:non`, `name-dynamicalias`, `name-non`, etc.
 
-- If `allowDynamicAliases = true` the aliases should coincide with `sample:dynamic`, `sample:bye`, `non:sample`, `non:test`.
+- If `allowDynamicAliases = true` the aliases should coincide with `sample:dynamic`, `sample:bye`, `non:sample`, `non:test`, `sample-dynamic`, `sample-bye`.
 - Middleware `OnlyGuild` indicates that the command could be executed if it is in a server.
 
 ### `CommandHandler.init`
