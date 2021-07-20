@@ -442,8 +442,9 @@ Register.command('@app-command/Sample', {
   },
 });
 ```
+**Note:** Dynamic aliases are detected with after the ":" or "-" character, for example: `name:dynamicalias`, `name:non`, `name-dynamicalias`, `name-non`, etc.
 
-- If `allowDynamicAliases = true` the aliases should coincide with `sample:dynamic`, `sample:bye`, `non:sample`, `non:test`.
+- If `allowDynamicAliases = true` the aliases should coincide with `sample:dynamic`, `sample:bye`, `non:sample`, `non:test`, `sample-dynamic`, `sample-bye`.
 - Middleware `OnlyGuild` indicates that the command could be executed if it is in a server.
 
 ### `CommandHandler.init`

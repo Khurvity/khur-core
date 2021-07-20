@@ -97,7 +97,7 @@ export class Commands {
         config: { names },
       }: CommandData = commandsWithDynamicAliases[a];
       const valitations: Array<boolean> = names.map((alias: string): boolean =>
-        command.startsWith(`${alias}:`)
+        command.startsWith(`${alias}:`) || command.startsWith(`${alias}-`)
       );
 
       if (valitations.includes(true)) {
